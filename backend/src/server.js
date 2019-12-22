@@ -15,18 +15,19 @@ app.get('/', function (req, res) {
 app.get('/pdf', (req, res) => {
     const doc = new PDFDocument({ pdfVersion: '1.7' });
     let response = '';
-    doc.pipe(fs.createWriteStream('output.pdf'));
+    doc.pipe(fs.createWriteStream(__dirname+'/output.pdf'));
     const stream = doc.pipe(new Base64Encode());
+    doc.text("Olá mundo");
     doc.end();
-
+    
     stream.on('data', function (chunk) {
         response += chunk;
     });
     res.set('Content-Type', 'application/pdf');
-
+    console.log("AQUI");
     stream.on('end', function () {
         res.status(200).json(response);
     });
 });
 
-pp.listen(3333);
+app.listen(3000);
