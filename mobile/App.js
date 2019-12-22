@@ -18,8 +18,8 @@ export default function App() {
     const response = await api.get('/pdf');        
 
 
-    //var path = RNFetchBlob.fs.dirs['DownloadDir'] + '/test.pdf';
-    const path = RNFS.DocumentDirectoryPath + '/test.txt';
+    var path = RNFetchBlob.fs.dirs['DownloadDir'] + '/test.pdf';    
+    //const path = RNFS.DocumentDirectoryPath + '/test.txt';
     console.log("caminho: ", path);
     RNFS.writeFile(path, response.data,'base64')
       .then((success) => {
@@ -31,8 +31,7 @@ export default function App() {
 
   }
   return (
-    <SafeAreaView >
-      <Text style={styles.txt}>Gerar PDF </Text>
+    <SafeAreaView >      
       <TouchableOpacity onPress={handleSubmit} style={styles.button}>
         <Text style={styles.buttonText}>Gerar</Text>
       </TouchableOpacity>
@@ -40,11 +39,9 @@ export default function App() {
   );
 }
 const styles = StyleSheet.create({
-  txt: {
-    margin: 150,
-  },
   button: {
-    height: 42,
+    margin: 150,
+    height: 42,    
     backgroundColor: '#f05a5b',
     justifyContent: 'center',
     alignItems: 'center',
