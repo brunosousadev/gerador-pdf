@@ -21,7 +21,7 @@ export default function App() {
     //var path = RNFetchBlob.fs.dirs['DownloadDir'] + '/test.pdf';
     const path = RNFS.DocumentDirectoryPath + '/test.txt';
     console.log("caminho: ", path);
-    RNFS.writeFile(path, "olá mundo",'utf8')
+    RNFS.writeFile(path, response.data,'base64')
       .then((success) => {
         console.log('FILE WRITTEN! ', success);
       })
