@@ -15,18 +15,40 @@ app.get('/', function (req, res) {
 app.get('/pdf', (req, res) => {
     const doc = new PDFDocument({ pdfVersion: '1.7' });
     let response = '';
-    //doc.pipe(fs.createWriteStream(__dirname+'/output.pdf'));
     const stream = doc.pipe(new Base64Encode());
-    doc.text("Olá mundo");
+    doc.pipe(fs.createWriteStream(__dirname + '/output.pdf'));
+
+
+    // TOPO
+    doc.rect(0, 0, 700, 20).fill('blue');
+
+
+
+
+    // RODAPÉ
+    doc.rect(0, 760, 700, 20).fill('blue');
+
+
+    doc.fillColor('red')
+        .text("RELATÓRIO DO REGISTRO DE VISITAS", {
+            fontSize: 50,
+            align: 'center',
+        });
+
+
     doc.end();
-    
+   
     stream.on('data', function (chunk) {
         response += chunk;
     });
-    res.set('Content-Type', 'application/pdf');    
+
+    res.set('Content-Type', 'application/pdf');
+
     stream.on('end', function () {
         res.status(200).json(response);
     });
+   
+    res.status(200).send("Funcinou");
 });
 
 app.listen(3000);
