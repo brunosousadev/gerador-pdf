@@ -2,10 +2,16 @@
 PDF Generator 🚀
 </h2>
 
+Basic way to generate pdf on server and send to application and download it on device.
 
 # 👨🏼‍💻 Developer 
 
 - [Bruno Sousa](https://www.linkedin.com/in/brunosousa01/)
+
+## ✋🏻 Pré-requisitos
+
+- [Node.js](https://nodejs.org/en/)
+- [Yarn](https://yarnpkg.com/pt-BR/docs/install)
 
 # How to contribute
 
